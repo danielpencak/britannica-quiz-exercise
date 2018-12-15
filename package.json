@@ -1,25 +1,45 @@
 {
   "name": "britannica-quiz-exercise",
+  "author": "Daniel Pencak <danielpencak@gmail.com>",
+  "license": "MIT",
+  "description": "Quiz Game",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
     "react": "^16.6.3",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "sass:build": "sass - update src/styles/scss:src/styles/css",
+    "start": "react-scripts start & nodemon --watch server/ server/bin/www",
+    "sass": "sass --watch src/styles/scss:src/styles/css",
+    "build": "npm sass:build & react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "engines": {
+    "node": "11.4.0"
   },
+  "proxy": "http://localhost:3001",
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^5.6.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "stylelint": "^9.9.0",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-scss": "^3.4.1"
+  }
 }
