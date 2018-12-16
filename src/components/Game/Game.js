@@ -6,6 +6,8 @@ import quiz from '../../util/quiz';
 
 let gamePreTimer = null;
 let gameTimer = null;
+const yourAnswers = [];
+const checkedAnswers = [];
 
 class Game extends Component {
   constructor(props) {
@@ -16,43 +18,35 @@ class Game extends Component {
       gameTimer: 10,
       gameStart: false,
       questions,
-      questionIndex: 0,
-      checkedAnswers: Array(quiz.numOfQuestions).fill(false)
+      questionIndex: 0
     };
 
     this.handlePreTimer = this.handlePreTimer.bind(this);
     this.handleGameTimer = this.handleGameTimer.bind(this);
     this.handleAnswerClick = this.handleAnswerClick.bind(this);
-    this.handleCheckAnwer = this.handleCheckAnwer.bind(this);
-  }
-
-  handleCheckAnwer(event) {
-    const correctAnswerCode = Number.parseInt(event.target.attributes.getNamedItem('data-correct-answer').value);
-    const selectedAnswerCode = Number.parseInt(event.target.attributes.getNamedItem('data-index').value) + 1;
-    const checkedAnswers = this.state.checkedAnswers.slice();
-
-    if (correctAnswerCode === selectedAnswerCode) {
-      checkedAnswers[this.state.questionIndex] = true;
-    }
-    else {
-      checkedAnswers[this.state.questionIndex] = false;
-    }
-
-    this.setState({
-      checkedAnswers
-    });
   }
 
   handleAnswerClick(event) {
-    this.handleCheckAnwer(event);
+    const correctAnswerCode = Number.parseInt(event.target.attributes.getNamedItem('data-correct-answer').value);
+    const selectedAnswerCode = Number.parseInt(event.target.attributes.getNamedItem('data-index').value) + 1;
 
-    if (this.state.questionIndex === this.state.questions.length - 1) {
-      this.props.history.push(`${quiz.url}/results`);
+    yourAnswers.push(selectedAnswerCode);
+
+    if (correctAnswerCode === selectedAnswerCode) {
+      checkedAnswers.push(true);
+    }
+    else {
+      checkedAnswers.push(false);
     }
 
-    this.setState(prevState => ({
-      questionIndex: prevState.questionIndex + 1
-    }));
+    if (this.state.questionIndex + 1 > this.state.questions.length - 1) {
+      this.props.history.push(`${quiz.url}/results`);
+    }
+    else {
+      this.setState(prevState => ({
+        questionIndex: prevState.questionIndex + 1
+      }));
+    }
   }
 
   handleGameTimer() {
@@ -95,17 +89,12 @@ class Game extends Component {
       localStorage.removeItem(`Quiz${quiz.id}Results`);
     }
 
-    const checkedAnswers = this.state.checkedAnswers.slice();
-
-    checkedAnswers.fill(false, 6);
-
-    this.setState({
-      checkedAnswers
-    });
+    if (localStorage.getItem(`Quiz${quiz.id}Answers`)) {
+      localStorage.removeItem(`Quiz${quiz.id}Answers`);
+    }
   }
 
   componentDidUpdate() {
-    // this.handleGameTimer();
     if (this.state.gamePreTimer === 0 && this.state.gameStart) {
       const question = document.getElementById('question');
 
@@ -117,7 +106,8 @@ class Game extends Component {
     clearInterval(gamePreTimer);
     clearInterval(gameTimer);
 
-    localStorage.setItem(`Quiz${quiz.id}Results`, JSON.stringify(this.state.checkedAnswers));
+    localStorage.setItem(`Quiz${quiz.id}Results`, JSON.stringify(checkedAnswers));
+    localStorage.setItem(`Quiz${quiz.id}Answers`, JSON.stringify(yourAnswers));
   }
 
   render() {

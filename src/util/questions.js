@@ -9,14 +9,14 @@ const questions = [{
 }, {
   'type': 'TRUE_FALSE',
   'level': 3,
-  'question': 'Superman�s high-school girlfriend was named Lana Lang.',
+  'question': 'Superman\'s high-school girlfriend was named Lana Lang.',
   'answers': ['Fact', 'Fiction'],
   'correct': 1,
   'explanation': 'Clark Kent was in love with Lana Lang. Then he went to Metropolis and fell in love with Lois Lane, the ace newspaper reporter.'
 }, {
   'type': 'TRUE_FALSE',
   'level': 1,
-  'question': 'Venom was an enemy of Spider-Man�s.',
+  'question': 'Venom was an enemy of Spider-Man\'s.',
   'answers': ['Fact', 'Fiction'],
   'correct': 1,
   'explanation': 'Venom was one of many enemies Spider-Man faced.'
