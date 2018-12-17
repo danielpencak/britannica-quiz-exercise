@@ -34,7 +34,7 @@ const quiz = {
     'mediaId': 0
   },
   'browserTitle': 'Comic Books: Fact or Fiction Quiz',
-  'introduction': 'In <em>X-Men</em>, is Wolverine able to turn into a ball of fire? Is kryptonite a real element? Sort through the facts in this study of comic book superheroes.',
+  'introduction': 'In <em>X-Men</em>, is Wolverine able to turn into a ball of fire? <br /> Is kryptonite a real element? <br /> Sort through the facts in this study of comic book superheroes.',
   'level': 1,
   'keywords': ['britannica', ' encyclopedia britannica', ' quiz', ' quizzes', ' comic', ' Superman', ' Spider-Man', ' Batman', ' X-Men', ' Clark Kent', ' hero', ' comic book', ' superhero', ' superhuman', ' pop culture'],
   'editorIds': null,

@@ -1,0 +1,181 @@
+.Game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1E7491;
+  height: calc(100% - 50px);
+  min-height: calc(100vh - 50px);
+  color: #FAE687;
+  position: relative;
+
+  .preGameTimerCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gameTimer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .time {
+    margin-left: 5px;
+    font-size: 55px !important;
+  }
+
+  .questionCard {
+    width: 80vw;
+    height: calc(70vh - 50px);
+    background-color: #FAE687;
+    color: #1F2230;
+    box-shadow: 5px 5px 20px 10px rgba(0, 0, 0, 0.21);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .level {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+  }
+
+  .questionCont {
+    width: 80%;
+    margin-bottom: 70px;
+  }
+
+  #question {
+    font-size: 2vw;
+    text-align: center;
+  }
+
+  #Answer0 {
+    position: absolute;
+    bottom: 5%;
+    left: 3%;
+  }
+
+  #Answer1 {
+    position: absolute;
+    bottom: 5%;
+    right: 3%;
+  }
+
+  .answer {
+    width: 45%;
+    height: 20%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: #0595F6;
+    color: #FEF73F;
+    font-size: 150%;
+  }
+
+  .answer:hover {
+    cursor: pointer;
+    background-color: #1F2230;
+  }
+}
+
+@media (max-width: 1200px) {
+  .Game {
+    #question {
+      font-size: 2.2vw;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .Game {
+    #question {
+      font-size: 2.4vw;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .Game {
+    #question {
+      font-size: 2.8vw;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .Game {
+    #question {
+      font-size: 3.3vw;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .Game {
+    .gameTimer {
+      font-size: 6vw;
+    }
+
+    .time {
+      font-size: 12vw !important;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .Game {
+    .preGameTimer {
+      font-size: 8vw;
+    }
+
+    #question {
+      font-size: 4vw;
+    }
+
+    .questionCard {
+      height: 50vh !important;
+    }
+
+    .answer:hover {
+      background-color: #0595F6;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .Game {
+    #question {
+      font-size: 4.5vw;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .Game {
+    #question {
+      font-size: 5vw;
+    }
+  }
+}
+
+@media (max-height: 450px) {
+  .Game {
+    height: 120%;
+    min-height: 100vh;
+
+    .questionCard {
+      height: calc(90vh - 50px);
+    }
+  }
+}

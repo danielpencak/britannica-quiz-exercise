@@ -44,12 +44,33 @@ class Results extends Component {
   render() {
     return (
       <div className="Results">
-        <h1>Your Quiz Results</h1>
-        <h1>
-          {
-            this.handleComputeCorrect()
-          }
-        </h1>
+        <div className="resultHeader">
+          <h1>Your Quiz Results</h1>
+          <h1>
+            {
+              this.handleComputeCorrect()
+            }
+          </h1>
+        </div>
+        <div className="btnCont">
+          <div
+            className="btn"
+            onClick={ event => {
+              this.props.history.push(`${quiz.url}/game`);
+            } }
+          >
+            PLAY AGAIN
+          </div>
+          <div
+            className="btn"
+            onClick={ event => {
+              this.props.history.push(`${quiz.url}/intro`);
+            } }
+          >
+            HOME
+          </div>
+        </div>
+        <div className="resultsCont">
         {
           this.state.quizResults
           ? this.state.quizResults.map((quizResult, index) => (
@@ -62,6 +83,7 @@ class Results extends Component {
           ))
           : null
         }
+        </div>
       </div>
     );
   }

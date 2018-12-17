@@ -1,0 +1,59 @@
+.ResultCard {
+  width: 100%;
+  border: 1px solid #1F2230;
+  margin-bottom: 20px;
+  padding: 50px;
+  background-color: #FAE687;
+  color: #1F2230;
+  position: relative;
+
+  .correctAnswerCont, .wrongAnswerCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+  }
+
+  .resultCardHeader {
+    margin: 10px 0 10px 0;
+  }
+
+  p {
+    color: #1E7491;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .glyphicon-ok-sign, .glyphicon-remove-sign {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 50px;
+  }
+
+  .glyphicon-ok-sign {
+    color: green;
+  }
+
+  .glyphicon-remove-sign {
+    color: red;
+  }
+}
+
+@media (max-width: 700px) {
+  .ResultCard {
+    .glyphicon-ok-sign, .glyphicon-remove-sign {
+      font-size: 30px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .ResultCard {
+    padding: 20px 10px 20px 10px;
+    .resultCardHeader {
+      margin: 20px 0 20px 0;
+    }
+  }
+}

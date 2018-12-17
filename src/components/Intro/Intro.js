@@ -13,7 +13,7 @@ class Intro extends Component {
   handleTypeSwitch() {
     switch (quiz.quizType) {
       case 'TRUE_FALSE':
-        return <p>Answer Type: True/False</p>;
+        return <p>Answer Type: <span className="details">True/False</span></p>;
         break;
       default:
 
@@ -35,28 +35,31 @@ class Intro extends Component {
     return (
       <div className="Intro">
         <div className="gameIntroCard">
-          <div className="gameIntroCardImgCont">
-            <img
-              className="gameIntroCardImg"
-              alt={ quiz.thumbnail.altText }
-              src={ quiz.thumbnail.filePath }
-            />
-            <Link to={ `${quiz.url}/game` }>
-              <span
-              className="glyphicon glyphicon-play-circle"
-              id={ `playIcon${quiz.id}` }
-              >
-              </span>
-            </Link>
+          <div className="gameDetailsCont">
+            <div className="playGameCont">
+              <h3 className="quizTitle">{ quiz.title }</h3>
+            <div className="gameIntroCardImgCont">
+              <img
+                className="gameIntroCardImg"
+                alt={ quiz.thumbnail.altText }
+                src={ quiz.thumbnail.filePath }
+                />
+                <Link to={ `${quiz.url}/game` }>
+                  <span
+                    className="glyphicon glyphicon-play-circle"
+                    id={ `playIcon${quiz.id}` }
+                  >
+                  </span>
+                </Link>
+              </div>
+            </div>
+            <div className="gameDescriptionCont">
+              <p>Number of Questions: <span className="details">{ quiz.numOfQuestions }</span></p>
+              <p>Time: <span className="details">{ quiz.seconds } seconds</span></p>
+              { this.handleTypeSwitch() }
+            </div>
           </div>
-          <div className="gameDescriptionCont">
-            <p>{ quiz.title }</p>
-            <p>{ quiz.description }</p>
-            <p id="comicQuizIntro"></p>
-            <p>Number of Questions: { quiz.numOfQuestions }</p>
-            <p>Time: { quiz.seconds } seconds</p>
-            { this.handleTypeSwitch() }
-          </div>
+          <p id="comicQuizIntro"></p>
         </div>
       </div>
     );

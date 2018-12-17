@@ -1,17 +1,30 @@
 .Intro {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  background-color: #1E7491;
+  height: calc(100% - 50px);
+  min-height: calc(100vh - 50px);
+  color: #FAE687;
+  padding-top: 30px;
 
   .gameIntroCard {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 80%;
   }
 
   .gameIntroCardImgCont {
     position: relative;
+  }
+
+  .gameDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .glyphicon-play-circle {
@@ -19,7 +32,59 @@
     z-index: 2;
     top: 50%;
     left: 50%;
-    font-size: 20px;
+    font-size: 250%;
     color: white;
+  }
+
+  .gameDetailsCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .playGameCont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .quizTitle {
+    text-decoration: underline;
+    margin-bottom: 10px;
+  }
+
+  #comicQuizIntro {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .gameDescriptionCont {
+    margin-top: 10px;
+  }
+
+  .details {
+    color: #1F2230;
+  }
+}
+
+@media (max-width: 660px) {
+  #comicQuizIntro {
+    font-size: 2.5vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .quizTitle {
+    font-size: 6vw;
+  }
+}
+
+@media (max-height: 400px) {
+  .Intro {
+    height: 100%;
+    min-height: 100vh;
   }
 }

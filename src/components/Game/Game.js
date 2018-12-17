@@ -6,8 +6,8 @@ import quiz from '../../util/quiz';
 
 let gamePreTimer = null;
 let gameTimer = null;
-const yourAnswers = [];
-const checkedAnswers = [];
+const yourAnswers = Array(quiz.numOfQuestions).fill(null);
+const checkedAnswers = Array(quiz.numOfQuestions).fill(false);
 
 class Game extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Game extends Component {
 
     this.state = {
       gamePreTimer: 3,
-      gameTimer: 10,
+      gameTimer: quiz.seconds,
       gameStart: false,
       questions,
       questionIndex: 0
@@ -30,13 +30,13 @@ class Game extends Component {
     const correctAnswerCode = Number.parseInt(event.target.attributes.getNamedItem('data-correct-answer').value);
     const selectedAnswerCode = Number.parseInt(event.target.attributes.getNamedItem('data-index').value) + 1;
 
-    yourAnswers.push(selectedAnswerCode);
+    yourAnswers[this.state.questionIndex] = selectedAnswerCode;
 
     if (correctAnswerCode === selectedAnswerCode) {
-      checkedAnswers.push(true);
+      checkedAnswers[this.state.questionIndex] = true;
     }
     else {
-      checkedAnswers.push(false);
+      checkedAnswers[this.state.questionIndex] = false;
     }
 
     if (this.state.questionIndex + 1 > this.state.questions.length - 1) {
@@ -56,7 +56,7 @@ class Game extends Component {
       }));
 
       if (this.state.gameTimer === 0) {
-        // this.props.history.push(`${quiz.url}/results`);
+        this.props.history.push(`${quiz.url}/results`);
         clearInterval(gameTimer);
       }
     }, 1000);
@@ -79,7 +79,7 @@ class Game extends Component {
 
         question.innerHTML = this.state.questions[this.state.questionIndex].question;
       }
-    }, 1000);
+    }, 2000);
   }
 
   componentDidMount() {
@@ -111,26 +111,55 @@ class Game extends Component {
   }
 
   render() {
+    const questionIndex = this.state.questionIndex;
+    const questionList = this.state.questions;
+
     return (
       <div className="Game">
         {
           !this.state.gameStart
-          ? <div>
-            <h1>
-              The game begins in <span id="gamePreTimer">{this.state.gamePreTimer}</span>
-            </h1>
+          ? <div className="preGameTimerCont">
+              <h1 className="preGameTimer">
+                THE GAME BEGINS IN
+              </h1>
+              <div id="gamePreTimer">
+                <h1 className="preGameTimer">
+                  {this.state.gamePreTimer}
+                </h1>
+              </div>
           </div>
           : <div>
-            {this.state.gameTimer}
-            <p>Level { this.state.questions[this.state.questionIndex].level }</p>
-            <p id="question"></p>
-            {
-              this.state.questions[this.state.questionIndex].type === 'TRUE_FALSE'
-              ? this.state.questions[this.state.questionIndex].answers.map((answer, index) => {
-                return (<div key={ index } id={ `Answer${index}`} data-index={ index.toString() } data-correct-answer={ (this.state.questions[this.state.questionIndex].correct).toString() } onClick={ event => { this.handleAnswerClick(event); }}>{ answer }</div>);
-              })
-              : null
-            }
+            <h1 className="gameTimer">
+              TIME REMAINING: <span className="time">{ this.state.gameTimer }</span>
+            </h1>
+            <div className="questionCard">
+              <p className="level">
+                Difficulty Level: { questionList[questionIndex].level }
+              </p>
+              <div className="questionCont">
+                <p id="question"></p>
+              </div>
+              {
+                questionList[questionIndex].type === 'TRUE_FALSE'
+                ? questionList[questionIndex].answers.map((answer, index) => {
+                  return (
+                    <div
+                      key={ index }
+                      id={ `Answer${index}` }
+                      data-index={ index.toString() }
+                      data-correct-answer={ (questionList[questionIndex].correct).toString() }
+                      onClick={ event => {
+                        this.handleAnswerClick(event);
+                      } }
+                      className="answer"
+                    >
+                      { answer }
+                    </div>
+                  );
+                })
+                : null
+              }
+            </div>
           </div>
         }
       </div>

@@ -1,0 +1,52 @@
+.ResultCard {
+  width: 100%;
+  border: 1px solid #1F2230;
+  margin-bottom: 20px;
+  padding: 50px;
+  background-color: #FAE687;
+  color: #1F2230;
+  position: relative;
+}
+.ResultCard .correctAnswerCont, .ResultCard .wrongAnswerCont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+.ResultCard .resultCardHeader {
+  margin: 10px 0 10px 0;
+}
+.ResultCard p {
+  color: #1E7491;
+  font-weight: bold;
+  font-style: italic;
+}
+.ResultCard .glyphicon-ok-sign, .ResultCard .glyphicon-remove-sign {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 50px;
+}
+.ResultCard .glyphicon-ok-sign {
+  color: green;
+}
+.ResultCard .glyphicon-remove-sign {
+  color: red;
+}
+
+@media (max-width: 700px) {
+  .ResultCard .glyphicon-ok-sign, .ResultCard .glyphicon-remove-sign {
+    font-size: 30px;
+  }
+}
+@media (max-width: 600px) {
+  .ResultCard {
+    padding: 20px 10px 20px 10px;
+  }
+  .ResultCard .resultCardHeader {
+    margin: 20px 0 20px 0;
+  }
+}
+
+/*# sourceMappingURL=ResultCard.css.map */

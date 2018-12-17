@@ -14,22 +14,22 @@ class ResultCard extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.quizResult)
     const questionElements = Array.from(document.getElementsByClassName(`question${this.props.index}`));
     const yourAnswerElements = Array.from(document.getElementsByClassName(`yourAnswer${this.props.index}`));
     const correctAnswerElements = Array.from(document.getElementsByClassName(`correctAnswer${this.props.index}`));
-
-    console.log(correctAnswerElements)
 
     for (const questionElement of questionElements) {
       questionElement.innerHTML = this.props.question;
     }
 
     for (const yourAnswerElement of yourAnswerElements) {
-      yourAnswerElement.innerText = this.state.questions[this.props.index].answers[this.state.yourAnswers[this.props.index] - 1];
+      if (this.state.yourAnswers[this.props.index]) {
+        yourAnswerElement.innerText = this.state.questions[this.props.index].answers[this.state.yourAnswers[this.props.index] - 1];
+      }
+      else {
+        yourAnswerElement.innerText = 'You did not answer this question in time.';
+      }
     }
-
-    console.log(this.state.questions[this.props.index].answers[this.state.questions[this.props.index].correct - 1])
 
     for (const correctAnswerElement of correctAnswerElements) {
       correctAnswerElement.innerText = this.state.questions[this.props.index].answers[this.state.questions[this.props.index].correct - 1];
@@ -41,28 +41,47 @@ class ResultCard extends Component {
       <div className="ResultCard">
         {
           this.props.quizResult
-          ? <div>
+          ? <div className="correctAnswerCont">
             <div className="glyphicon glyphicon-ok-sign"></div>
-            <h3>Question</h3>
-            <p className={ `question${this.props.index}` }></p>
-            <h3>Your Answer</h3>
-            <p className={ `yourAnswer${this.props.index}` }></p>
-            <h3>Great Job!</h3>
-            <h4>Explanation</h4>
-            <p>{ this.state.questions[this.props.index].explanation }</p>
+              <h3 className="resultCardHeader">Question</h3>
+              <p
+                className={ `question${this.props.index}` }
+              >
+              </p>
+              <h3 className="resultCardHeader">Your Answer</h3>
+              <p
+                className={ `yourAnswer${this.props.index}` }
+              >
+              </p>
+
+              <h3 className="resultCardHeader">Explanation</h3>
+              <p>
+                { this.state.questions[this.props.index].explanation }
+              </p>
           </div>
-          : <div>
-            <div className="glyphicon glyphicon-remove-sign"></div>
-            <h3>Question</h3>
-            <p className={`question${this.props.index}`}></p>
-            <h3>Your Answer</h3>
-            <p className={ `yourAnswer${this.props.index}` }></p>
-            <h3>Correct Answer</h3>
-            <p className={ `correctAnswer${this.props.index}` }></p>
-            <h3>Sorry. You got this one wrong.</h3>
-            <h4>Explanation</h4>
-            <p>{ this.state.questions[this.props.index].explanation }</p>
-          </div>
+          : <div className="wrongAnswerCont">
+              <div className="glyphicon glyphicon-remove-sign"></div>
+              <h3 className="resultCardHeader">Question</h3>
+              <p
+                className={`question${this.props.index}`}
+              >
+              </p>
+              <h3 className="resultCardHeader">Your Answer</h3>
+              <p
+                className={ `yourAnswer${this.props.index}` }
+              >
+              </p>
+              <h3 className="resultCardHeader">Correct Answer</h3>
+              <p
+                className={ `correctAnswer${this.props.index}` }
+              >
+              </p>
+
+              <h3 className="resultCardHeader">Explanation</h3>
+              <p>
+                { this.state.questions[this.props.index].explanation }
+              </p>
+            </div>
         }
       </div>
     );
